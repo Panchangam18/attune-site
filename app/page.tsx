@@ -5,7 +5,10 @@ const downloadUrl =
 
 export default function Home() {
   return (
-    <main className="site-shell">
+    <main
+      className="site-shell"
+      style={{ background: "#101211", color: "#ebe9e4" }}
+    >
       <section className="download-card" aria-labelledby="hero-title">
         <h1 id="hero-title">
           Tis a good day to <AttuneWord />
