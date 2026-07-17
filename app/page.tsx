@@ -14,13 +14,15 @@ export default function Home() {
         <h1 id="hero-title">
           Tis a good day to <AttuneWord />
         </h1>
-        <a className="download-button" href={downloadUrl}>
-          <span className="apple-logo" aria-hidden="true" />
-          Download for Mac
-        </a>
-        <a className="source-link" href={githubUrl}>
-          GitHub
-        </a>
+        <div className="actions" aria-label="Download and source links">
+          <a className="download-button" href={downloadUrl}>
+            <span className="apple-logo" aria-hidden="true" />
+            Download for Mac
+          </a>
+          <a className="github-button" href={githubUrl} aria-label="GitHub">
+            <span className="github-logo" aria-hidden="true" />
+          </a>
+        </div>
       </section>
     </main>
   );

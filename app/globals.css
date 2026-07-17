@@ -57,6 +57,13 @@ a {
   text-align: center;
 }
 
+.actions {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
 h1 {
   font-size: clamp(22px, 5vw, 46px);
   font-weight: 650;
@@ -153,25 +160,40 @@ h1 {
   transform: translateY(-2px);
 }
 
-.source-link {
-  border-bottom: 1px solid rgb(235 233 228 / 0.34);
-  color: rgb(235 233 228 / 0.62);
-  font-size: 13px;
-  font-weight: 650;
-  letter-spacing: 0;
-  margin-top: -14px;
-  padding-bottom: 3px;
+.github-button {
+  align-items: center;
+  background: var(--theme-muted);
+  border: 1px solid var(--theme-line);
+  border-radius: 100px;
+  color: var(--text);
+  display: inline-flex;
+  height: 50px;
+  justify-content: center;
+  transition:
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 50px;
 }
 
-.source-link:hover,
-.source-link:focus-visible {
+.github-button:hover,
+.github-button:focus-visible {
   border-color: var(--theme-accent);
   color: var(--text);
   outline: none;
+  transform: translateY(-2px);
+}
+
+.github-logo {
+  background: currentColor;
+  height: 22px;
+  mask: url("/github-mark.svg") center / contain no-repeat;
+  -webkit-mask: url("/github-mark.svg") center / contain no-repeat;
+  width: 22px;
 }
 
 @media (max-width: 520px) {
   .download-button {
-    width: min(100%, 280px);
+    width: min(100%, 230px);
   }
 }
