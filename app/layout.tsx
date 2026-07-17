@@ -5,20 +5,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://attune-site.openai.site"),
   title: "Attune",
   description:
-    "Download Attune, a desktop control panel for the Attune live CSS runtime.",
+    "Tis a good day to Attune.",
   openGraph: {
     title: "Attune",
-    description:
-      "Download Attune, a desktop control panel for live CSS sessions.",
-    images: ["/og.png"],
+    description: "Tis a good day to Attune.",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Attune",
-    description:
-      "Download Attune, a desktop control panel for live CSS sessions.",
-    images: ["/og.png"],
+    description: "Tis a good day to Attune.",
   },
   icons: {
     icon: "/attune-logo.svg",

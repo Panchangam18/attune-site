@@ -1,7 +1,7 @@
 # Attune Site
 
-A minimal download site for
-[Attune App](https://github.com/Panchangam18/attune-app).
+A minimal download site for the
+[Attune v0.1.0 release](https://github.com/Panchangam18/attune-app/releases/tag/v0.1.0).
 
 ## Prerequisites
 
