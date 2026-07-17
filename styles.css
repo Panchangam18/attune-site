@@ -1,8 +1,6 @@
-@import "tailwindcss";
-
 @font-face {
   font-family: "Geist Pixel";
-  src: url("/fonts/GeistPixel-Square.woff2") format("woff2");
+  src: url("public/fonts/GeistPixel-Square.woff2") format("woff2");
   font-display: swap;
 }
 
@@ -12,13 +10,6 @@
   --theme-accent: #929892;
   --theme-line: #353a36;
   --theme-muted: #1b1e1c;
-}
-
-@theme inline {
-  --color-background: var(--bg);
-  --color-foreground: var(--text);
-  --font-sans: "Geist Pixel", ui-monospace, monospace;
-  --font-mono: "Geist Pixel", ui-monospace, monospace;
 }
 
 * {
@@ -146,8 +137,8 @@ h1 {
   background: currentColor;
   flex: 0 0 auto;
   height: 22px;
-  mask: url("/apple-logo.png") center / contain no-repeat;
-  -webkit-mask: url("/apple-logo.png") center / contain no-repeat;
+  mask: url("public/apple-logo.png") center / contain no-repeat;
+  -webkit-mask: url("public/apple-logo.png") center / contain no-repeat;
   width: 18px;
 }
 
@@ -187,13 +178,28 @@ h1 {
 .github-logo {
   background: currentColor;
   height: 22px;
-  mask: url("/github-mark.svg") center / contain no-repeat;
-  -webkit-mask: url("/github-mark.svg") center / contain no-repeat;
+  mask: url("public/github-mark.svg") center / contain no-repeat;
+  -webkit-mask: url("public/github-mark.svg") center / contain no-repeat;
   width: 22px;
 }
 
 @media (max-width: 520px) {
+  .site-shell {
+    padding: 20px;
+  }
+
+  .actions {
+    gap: 10px;
+  }
+
   .download-button {
-    width: min(100%, 230px);
+    font-size: 14px;
+    min-height: 48px;
+    padding: 0 18px;
+  }
+
+  .github-button {
+    height: 48px;
+    width: 48px;
   }
 }
