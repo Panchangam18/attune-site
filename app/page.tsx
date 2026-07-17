@@ -2,6 +2,7 @@ import { AttuneWord } from "./AttuneWord";
 
 const downloadUrl =
   "https://github.com/Panchangam18/attune-app/releases/download/v0.1.0/Attune-0.1.0-mac-universal.dmg";
+const githubUrl = "https://github.com/Panchangam18/attune-app";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
         <a className="download-button" href={downloadUrl}>
           <span className="apple-logo" aria-hidden="true" />
           Download for Mac
+        </a>
+        <a className="source-link" href={githubUrl}>
+          GitHub
         </a>
       </section>
     </main>

@@ -35,10 +35,12 @@ test("server-renders the Attune download page", async () => {
   assert.match(html, /Tis a good day to/);
   assert.match(html, /Attune/);
   assert.match(html, /Download for Mac/);
+  assert.match(html, /GitHub/);
   assert.match(
     html,
     /https:\/\/github\.com\/Panchangam18\/attune-app\/releases\/download\/v0\.1\.0\/Attune-0\.1\.0-mac-universal\.dmg/,
   );
+  assert.match(html, /https:\/\/github\.com\/Panchangam18\/attune-app/);
   assert.doesNotMatch(html, /View source|Download Attune|What you get/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
