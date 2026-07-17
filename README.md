@@ -1,7 +1,7 @@
 # Attune Site
 
 A minimal download site for the
-[Attune v0.1.0 release](https://github.com/Panchangam18/attune-app/releases/tag/v0.1.0).
+[Attune v0.1.0 macOS DMG](https://github.com/Panchangam18/attune-app/releases/download/v0.1.0/Attune-0.1.0-mac-universal.dmg).
 
 ## Prerequisites
 

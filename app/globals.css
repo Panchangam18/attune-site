@@ -25,8 +25,9 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  background: var(--bg);
+  background: #101211;
   color: var(--text);
   font-family: "Geist Pixel", ui-monospace, monospace;
   margin: 0;
@@ -41,6 +42,7 @@ a {
 
 .site-shell {
   align-items: center;
+  background: #101211;
   display: flex;
   justify-content: center;
   min-height: 100vh;
@@ -64,27 +66,95 @@ h1 {
 }
 
 .attune-word {
-  border-bottom: 2px solid var(--theme-accent);
+  --wave-a: #929892;
+  --wave-b: #d8c88f;
+  --wave-c: #70ad87;
+  --wave-d: #d65c43;
+  border-bottom: 2px solid transparent;
+  display: inline-block;
   padding-bottom: 2px;
+  position: relative;
+}
+
+.attune-word::after {
+  animation: underline-wave 1.55s linear infinite;
+  background: linear-gradient(
+    90deg,
+    var(--wave-a),
+    var(--wave-b),
+    var(--wave-c),
+    var(--wave-d),
+    var(--wave-a)
+  );
+  background-size: 240% 100%;
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+@keyframes underline-wave {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 240% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .attune-word::after {
+    animation: none;
+  }
 }
 
 .download-button {
   align-items: center;
-  background: var(--theme-muted);
-  border: 1px solid var(--theme-line);
-  color: var(--text);
+  background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
+  color: #fff;
   display: inline-flex;
+  gap: 10px;
   font: inherit;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 650;
   justify-content: center;
-  min-height: 44px;
-  padding: 0 22px;
+  letter-spacing: 0;
+  min-height: 50px;
+  padding: 0 26px;
+  transition:
+    background 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  user-select: none;
+}
+
+.apple-logo {
+  background: currentColor;
+  flex: 0 0 auto;
+  height: 22px;
+  mask: url("/apple-logo.png") center / contain no-repeat;
+  -webkit-mask: url("/apple-logo.png") center / contain no-repeat;
+  width: 18px;
 }
 
 .download-button:hover,
 .download-button:focus-visible {
-  border-color: var(--theme-accent);
-  color: var(--theme-accent);
+  background: linear-gradient(180deg, #2a2a2a 0%, #111 100%);
+  border-color: rgb(255 255 255 / 0.22);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.4);
   outline: none;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 520px) {
+  .download-button {
+    width: min(100%, 280px);
+  }
 }
