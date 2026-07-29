@@ -63,49 +63,193 @@ h1 {
   margin: 0;
 }
 
+@property --tide-shift {
+  inherits: true;
+  initial-value: 0%;
+  syntax: "<percentage>";
+}
+
 .attune-word {
-  --wave-a: #929892;
-  --wave-b: #d8c88f;
-  --wave-c: #70ad87;
-  --wave-d: #d65c43;
-  border-bottom: 2px solid transparent;
-  display: inline-block;
-  padding-bottom: 2px;
+  --attune-1: #8fe7d1;
+  --attune-2: #f4d385;
+  --attune-3: #f48faa;
+  --attune-4: #9aa8ff;
+  --tide-shift: 0%;
+  animation: color-tide 9.6s ease-in-out infinite;
+  display: inline-grid;
+  isolation: isolate;
+  margin-inline: 0.04em;
+  padding: 0.02em 0.03em 0.12em;
   position: relative;
+  vertical-align: -0.12em;
+}
+
+.attune-voice {
+  animation: color-tide 9.6s ease-in-out infinite;
+  background:
+    linear-gradient(
+      105deg,
+      var(--attune-1) 0%,
+      var(--attune-2) 24%,
+      var(--attune-3) 49%,
+      var(--attune-4) 74%,
+      var(--attune-1) 100%
+    );
+  background-clip: text;
+  background-position: var(--tide-shift) 50%;
+  background-size: 320% 100%;
+  color: transparent;
+  grid-area: 1 / 1;
+  opacity: 0;
+  -webkit-background-clip: text;
+}
+
+.attune-voice:nth-child(1) {
+  font-family: "Geist Pixel", ui-monospace, monospace;
+  font-weight: 650;
+}
+
+.attune-voice:nth-child(2) {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+}
+
+.attune-voice:nth-child(3) {
+  font-family: "Arial Rounded MT Bold", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+
+.attune-voice:nth-child(4) {
+  font-family: "Courier New", ui-monospace, monospace;
+  font-weight: 700;
+  letter-spacing: -0.075em;
+}
+
+.attune-voice.is-active {
+  opacity: 1;
+}
+
+.attune-word.is-glitching .attune-voice.is-active {
+  animation: type-glitch 360ms steps(2, end);
 }
 
 .attune-word::after {
-  animation: underline-wave 1.55s linear infinite;
+  animation: undertow 9.6s ease-in-out infinite;
   background: linear-gradient(
     90deg,
-    var(--wave-a),
-    var(--wave-b),
-    var(--wave-c),
-    var(--wave-d),
-    var(--wave-a)
+    transparent,
+    var(--attune-1),
+    var(--attune-2),
+    var(--attune-3),
+    var(--attune-4),
+    transparent
   );
-  background-size: 240% 100%;
-  bottom: 0;
+  background-position: var(--tide-shift) 50%;
+  background-size: 220% 100%;
+  border-radius: 100%;
+  bottom: 0.06em;
+  box-shadow: 0 0 0.45em color-mix(in srgb, var(--attune-3) 28%, transparent);
   content: "";
-  height: 2px;
-  left: 0;
+  height: 0.055em;
+  left: 5%;
+  opacity: 0.72;
   position: absolute;
-  right: 0;
+  right: 5%;
+  transform-origin: center;
+  z-index: -1;
 }
 
-@keyframes underline-wave {
+@keyframes color-tide {
   0% {
-    background-position: 0% 50%;
+    --tide-shift: 0%;
+  }
+
+  48% {
+    --tide-shift: 100%;
+  }
+
+  52% {
+    --tide-shift: 100%;
   }
 
   100% {
-    background-position: 240% 50%;
+    --tide-shift: 0%;
+  }
+}
+
+@keyframes undertow {
+  0%,
+  100% {
+    opacity: 0.36;
+    transform: scaleX(0.64);
+  }
+
+  50% {
+    opacity: 0.86;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes type-glitch {
+  0%,
+  100% {
+    clip-path: inset(0);
+    filter: none;
+    opacity: 1;
+    transform: translateX(0) skewX(0);
+  }
+
+  16% {
+    clip-path: inset(12% 0 58% 0);
+    filter:
+      drop-shadow(0.07em 0 #ff4d8d)
+      drop-shadow(-0.07em 0 #4de8ff);
+    transform: translateX(0.09em) skewX(8deg);
+  }
+
+  32% {
+    clip-path: inset(54% 0 18% 0);
+    filter:
+      drop-shadow(-0.08em 0 #ff4d8d)
+      drop-shadow(0.08em 0 #4de8ff);
+    transform: translateX(-0.08em) skewX(-6deg);
+  }
+
+  48% {
+    clip-path: inset(28% 0 38% 0);
+    filter: contrast(1.8) saturate(1.5);
+    opacity: 0.35;
+    transform: translateX(0.04em) scaleX(1.06);
+  }
+
+  64% {
+    clip-path: inset(0);
+    filter:
+      drop-shadow(0.045em 0 #ff4d8d)
+      drop-shadow(-0.045em 0 #4de8ff);
+    opacity: 1;
+    transform: translateX(-0.025em);
+  }
+
+  80% {
+    clip-path: inset(68% 0 8% 0);
+    filter: none;
+    transform: translateX(0.035em);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .attune-word,
+  .attune-voice,
   .attune-word::after {
     animation: none;
+  }
+
+  .attune-voice:not(:first-child) {
+    display: none;
   }
 }
 

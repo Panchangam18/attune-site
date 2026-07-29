@@ -1,20 +1,25 @@
-function randomColor() {
-  const hue = Math.floor(Math.random() * 360);
-  return `hsl(${hue} 74% 66%)`;
-}
-
-function applyNextWave(element) {
-  element.style.setProperty("--wave-a", randomColor());
-  element.style.setProperty("--wave-b", randomColor());
-  element.style.setProperty("--wave-c", randomColor());
-  element.style.setProperty("--wave-d", randomColor());
-}
-
 const attuneWord = document.querySelector(".attune-word");
 
-if (attuneWord) {
-  applyNextWave(attuneWord);
-  window.setInterval(() => applyNextWave(attuneWord), 900);
+if (
+  attuneWord &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  const voices = [...attuneWord.querySelectorAll(".attune-voice")];
+  let activeVoice = 0;
+
+  window.setInterval(() => {
+    attuneWord.classList.add("is-glitching");
+
+    window.setTimeout(() => {
+      voices[activeVoice].classList.remove("is-active");
+      activeVoice = (activeVoice + 1) % voices.length;
+      voices[activeVoice].classList.add("is-active");
+    }, 120);
+
+    window.setTimeout(() => {
+      attuneWord.classList.remove("is-glitching");
+    }, 380);
+  }, 2400);
 }
 
 async function updateDownloadLink() {
