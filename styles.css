@@ -75,17 +75,18 @@ h1 {
   --attune-3: #f48faa;
   --attune-4: #9aa8ff;
   --tide-shift: 0%;
-  animation: color-tide 9.6s ease-in-out infinite;
+  align-items: baseline;
+  animation: color-tide 11.2s ease-in-out infinite;
   display: inline-grid;
   isolation: isolate;
   margin-inline: 0.04em;
-  padding: 0.02em 0.03em 0.12em;
+  padding-inline: 0.03em;
   position: relative;
-  vertical-align: -0.12em;
+  vertical-align: baseline;
 }
 
 .attune-voice {
-  animation: color-tide 9.6s ease-in-out infinite;
+  align-self: baseline;
   background:
     linear-gradient(
       105deg,
@@ -100,8 +101,38 @@ h1 {
   background-size: 320% 100%;
   color: transparent;
   grid-area: 1 / 1;
+  line-height: 1;
   opacity: 0;
+  position: relative;
   -webkit-background-clip: text;
+}
+
+.attune-voice::before,
+.attune-voice::after {
+  background:
+    radial-gradient(
+      circle,
+      var(--plate-color) 0 31%,
+      transparent 36%
+    )
+    0 0 / 0.115em 0.115em;
+  background-clip: text;
+  color: transparent;
+  content: attr(data-text);
+  inset: 0;
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  -webkit-background-clip: text;
+}
+
+.attune-voice::before {
+  --plate-color: #25d9ff;
+}
+
+.attune-voice::after {
+  --plate-color: #ff2d86;
 }
 
 .attune-voice:nth-child(1) {
@@ -114,12 +145,14 @@ h1 {
   font-style: italic;
   font-weight: 600;
   letter-spacing: -0.055em;
+  top: -0.015em;
 }
 
 .attune-voice:nth-child(3) {
   font-family: "Arial Rounded MT Bold", "Helvetica Neue", sans-serif;
   font-weight: 700;
   letter-spacing: -0.045em;
+  top: -0.01em;
 }
 
 .attune-voice:nth-child(4) {
@@ -133,33 +166,15 @@ h1 {
 }
 
 .attune-word.is-glitching .attune-voice.is-active {
-  animation: type-glitch 360ms steps(2, end);
+  animation: plate-base-slip 480ms steps(6, end);
 }
 
-.attune-word::after {
-  animation: undertow 9.6s ease-in-out infinite;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--attune-1),
-    var(--attune-2),
-    var(--attune-3),
-    var(--attune-4),
-    transparent
-  );
-  background-position: var(--tide-shift) 50%;
-  background-size: 220% 100%;
-  border-radius: 100%;
-  bottom: 0.06em;
-  box-shadow: 0 0 0.45em color-mix(in srgb, var(--attune-3) 28%, transparent);
-  content: "";
-  height: 0.055em;
-  left: 5%;
-  opacity: 0.72;
-  position: absolute;
-  right: 5%;
-  transform-origin: center;
-  z-index: -1;
+.attune-word.is-glitching .attune-voice.is-active::before {
+  animation: cyan-plate-slip 480ms steps(6, end);
+}
+
+.attune-word.is-glitching .attune-voice.is-active::after {
+  animation: magenta-plate-slip 480ms steps(6, end);
 }
 
 @keyframes color-tide {
@@ -180,71 +195,112 @@ h1 {
   }
 }
 
-@keyframes undertow {
+@keyframes plate-base-slip {
   0%,
   100% {
-    opacity: 0.36;
-    transform: scaleX(0.64);
+    filter: none;
+    transform: translate(0) skewX(0);
   }
 
-  50% {
-    opacity: 0.86;
-    transform: scaleX(1);
+  17% {
+    transform: translate(-0.025em, 0.008em) skewX(-2deg);
+  }
+
+  34% {
+    filter: saturate(1.35) contrast(1.08);
+    transform: translate(0.035em, -0.01em) skewX(2deg);
+  }
+
+  51% {
+    transform: translate(-0.015em, 0);
+  }
+
+  68% {
+    transform: translate(0.018em, 0.005em);
   }
 }
 
-@keyframes type-glitch {
+@keyframes cyan-plate-slip {
   0%,
   100% {
-    clip-path: inset(0);
-    filter: none;
-    opacity: 1;
-    transform: translateX(0) skewX(0);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    opacity: 0;
+    transform: translate(0);
   }
 
-  16% {
-    clip-path: inset(12% 0 58% 0);
-    filter:
-      drop-shadow(0.07em 0 #ff4d8d)
-      drop-shadow(-0.07em 0 #4de8ff);
-    transform: translateX(0.09em) skewX(8deg);
+  17% {
+    clip-path: polygon(0 4%, 100% 0, 98% 27%, 2% 32%);
+    opacity: 0.92;
+    transform: translate(-0.13em, 0.02em);
   }
 
-  32% {
-    clip-path: inset(54% 0 18% 0);
-    filter:
-      drop-shadow(-0.08em 0 #ff4d8d)
-      drop-shadow(0.08em 0 #4de8ff);
-    transform: translateX(-0.08em) skewX(-6deg);
+  34% {
+    clip-path: polygon(2% 31%, 98% 27%, 100% 59%, 0 64%);
+    opacity: 0.78;
+    transform: translate(0.1em, -0.015em);
   }
 
-  48% {
-    clip-path: inset(28% 0 38% 0);
-    filter: contrast(1.8) saturate(1.5);
-    opacity: 0.35;
-    transform: translateX(0.04em) scaleX(1.06);
+  51% {
+    clip-path: polygon(0 61%, 100% 56%, 98% 83%, 2% 88%);
+    opacity: 0.9;
+    transform: translate(-0.085em, 0.01em);
   }
 
-  64% {
-    clip-path: inset(0);
-    filter:
-      drop-shadow(0.045em 0 #ff4d8d)
-      drop-shadow(-0.045em 0 #4de8ff);
-    opacity: 1;
-    transform: translateX(-0.025em);
+  68% {
+    clip-path: polygon(0 14%, 100% 10%, 99% 23%, 1% 27%);
+    opacity: 0.65;
+    transform: translate(0.055em, 0);
   }
 
-  80% {
-    clip-path: inset(68% 0 8% 0);
-    filter: none;
-    transform: translateX(0.035em);
+  85% {
+    clip-path: polygon(1% 78%, 99% 74%, 100% 96%, 0 100%);
+    opacity: 0.45;
+    transform: translate(-0.035em, 0);
+  }
+}
+
+@keyframes magenta-plate-slip {
+  0%,
+  100% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    opacity: 0;
+    transform: translate(0);
+  }
+
+  17% {
+    clip-path: polygon(1% 70%, 99% 66%, 100% 96%, 0 100%);
+    opacity: 0.82;
+    transform: translate(0.11em, -0.01em);
+  }
+
+  34% {
+    clip-path: polygon(0 8%, 100% 4%, 98% 25%, 2% 30%);
+    opacity: 0.94;
+    transform: translate(-0.09em, 0.015em);
+  }
+
+  51% {
+    clip-path: polygon(1% 38%, 99% 34%, 100% 67%, 0 72%);
+    opacity: 0.72;
+    transform: translate(0.13em, 0);
+  }
+
+  68% {
+    clip-path: polygon(0 57%, 100% 52%, 99% 74%, 1% 79%);
+    opacity: 0.86;
+    transform: translate(-0.06em, 0.01em);
+  }
+
+  85% {
+    clip-path: polygon(1% 18%, 99% 14%, 100% 31%, 0 35%);
+    opacity: 0.38;
+    transform: translate(0.03em, 0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .attune-word,
-  .attune-voice,
-  .attune-word::after {
+  .attune-voice {
     animation: none;
   }
 

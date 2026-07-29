@@ -14,12 +14,12 @@ if (
       voices[activeVoice].classList.remove("is-active");
       activeVoice = (activeVoice + 1) % voices.length;
       voices[activeVoice].classList.add("is-active");
-    }, 120);
+    }, 180);
 
     window.setTimeout(() => {
       attuneWord.classList.remove("is-glitching");
-    }, 380);
-  }, 2400);
+    }, 520);
+  }, 2800);
 }
 
 async function updateDownloadLink() {
