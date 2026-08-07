@@ -1,27 +1,3 @@
-const attuneWord = document.querySelector(".attune-word");
-
-if (
-  attuneWord &&
-  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-) {
-  const voices = [...attuneWord.querySelectorAll(".attune-voice")];
-  let activeVoice = 0;
-
-  window.setInterval(() => {
-    attuneWord.classList.add("is-glitching");
-
-    window.setTimeout(() => {
-      voices[activeVoice].classList.remove("is-active");
-      activeVoice = (activeVoice + 1) % voices.length;
-      voices[activeVoice].classList.add("is-active");
-    }, 180);
-
-    window.setTimeout(() => {
-      attuneWord.classList.remove("is-glitching");
-    }, 520);
-  }, 2800);
-}
-
 async function updateDownloadLink() {
   const downloadButton = document.querySelector("[data-download-button]");
 
